@@ -48,8 +48,7 @@
         "./scripts/vagrant-ssh.bat",
         "./scripts/enable-rdp.bat",
         "./scripts/compact.bat",
-        "./scripts/disable-auto-logon.bat",
-        "./scripts/uac-enable.bat"
+        "./scripts/disable-auto-logon.bat"
       ]
     }
   ],
