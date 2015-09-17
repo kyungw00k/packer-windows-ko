@@ -53,5 +53,9 @@
 * https://github.com/joefitzgerald/packer-windows
 * https://github.com/boxcutter/windows
 
+## Use Pre-built Image
+* [Windows 10 Pro K x64](https://atlas.hashicorp.com/kyungw00k/boxes/windows-10-pro-korean-x64)
+* [Windows 10 Pro KN x64](https://atlas.hashicorp.com/kyungw00k/boxes/windows-10-pro-kn-korean-x64)
+
 ## Contributing
 Pull request 해주시면 좋죠.
