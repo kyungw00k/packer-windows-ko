@@ -2,17 +2,17 @@
   "builders": [
     {
       "type": "virtualbox-iso",
-      "iso_url": "./iso/Win10_KN_Korean_x64.iso",
-      "iso_checksum_type": "md5",
-      "iso_checksum": "19295a26d37f81e114fcfed7f1c71b9c",
-      "headless": false,
-      "boot_wait": "2m",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_wait_timeout": "2h",
-      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "Windows10_64",
-      "disk_size": 61440,
+      "disk_size": "{{user `disk_size`}}",
+      "headless": "{{user `headless`}}",
+      "boot_wait": "{{user `boot_wait`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
+      "shutdown_command": "{{user `shutdown_command`}}",
       "floppy_files": [
         "./answer_files/10/pro-kn/amd64/Autounattend.xml",
         "./scripts/fixnetwork.ps1",
@@ -23,19 +23,72 @@
         "./scripts/oracle-cert.cer"
       ],
       "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "2048"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
-        ]
-      ]
+        ["modifyvm", "{{.Name}}", "--memory", "2048"],
+        ["modifyvm", "{{.Name}}", "--cpus", "1"]
+      ],
+      "vm_name": "{{user `vm_name`}}"
+    },
+    {
+      "type": "vmware-iso",
+      "guest_os_type": "windows10-64",
+      "tools_upload_flavor": "windows",
+      "disk_size": "{{user `disk_size`}}",
+      "headless": "{{user `headless`}}",
+      "boot_wait": "{{user `boot_wait`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
+      "shutdown_command": "{{user `shutdown_command`}}",
+      "floppy_files": [
+        "./answer_files/10/pro-kn/amd64/Autounattend.xml",
+        "./scripts/fixnetwork.ps1",
+        "./scripts/microsoft-updates.bat",
+        "./scripts/win-updates.ps1",
+        "./scripts/openssh.ps1",
+        "./scripts/chocolatey.ps1",
+        "./scripts/oracle-cert.cer"
+      ],
+      "vmx_data": {
+        "cpuid.coresPerSocket": "1",
+        "memsize": "2048",
+        "numvcpus": "1",
+        "scsi0.virtualDev": "lsisas1068"
+      },
+      "vm_name": "{{user `vm_name`}}"
+    },
+    {
+      "type": "parallels-iso",
+      "guest_os_type": "win-10",
+      "parallels_tools_flavor": "win",
+      "hard_drive_interface": "sata",
+      "disk_size": "{{user `disk_size`}}",
+      "headless": "{{user `headless`}}",
+      "boot_wait": "{{user `boot_wait`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
+      "shutdown_command": "{{user `shutdown_command`}}",
+      "floppy_files": [
+        "./answer_files/10/pro-kn/amd64/Autounattend.xml",
+        "./scripts/fixnetwork.ps1",
+        "./scripts/microsoft-updates.bat",
+        "./scripts/win-updates.ps1",
+        "./scripts/openssh.ps1",
+        "./scripts/chocolatey.ps1",
+        "./scripts/oracle-cert.cer"
+      ],
+
+      "prlctl": [
+        ["set", "{{.Name}}", "--memsize", "2048"],
+        ["set", "{{.Name}}", "--cpus", "1"]
+      ],
+      "vm_name": "{{user `vm_name`}}"
     }
   ],
   "provisioners": [
@@ -55,10 +108,24 @@
   ],
   "post-processors": [
     {
+      "compression_level": 1,
       "type": "vagrant",
       "keep_input_artifact": false,
       "output": "box/{{.Provider}}/win10-pro-kn-x64-ssh.box",
       "vagrantfile_template": "./tpl/vagrantfile-win10-pro-kn-x64.template"
     }
-  ]
+  ],
+
+  "variables": {
+    "vm_name" : "win10-pro-kn-x64",
+    "disk_size": "61440",
+    "iso_url": "./iso/Win10_KN_Korean_x64.iso",
+    "iso_checksum_type": "md5",
+    "iso_checksum": "19295a26d37f81e114fcfed7f1c71b9c",
+    "headless": "false",
+    "boot_wait": "2m",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "ssh_wait_timeout": "4h",
+    "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\""  }
 }

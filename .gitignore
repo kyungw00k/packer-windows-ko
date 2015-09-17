@@ -7,6 +7,6 @@
 /output-virtualbox/
 /output-virtualbox-iso/
 /output-virtualbox-ovf/
+/output-parallels-iso/
 *.box
 /packer_cache/
-
