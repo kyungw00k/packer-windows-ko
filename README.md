@@ -6,8 +6,10 @@
 ## Windows Versions
 지원하는 윈도우 버전은 다음과 같습니다.
 
- * Windows 10 Pro Korean x64
- * Windows 10 Pro KN Korean x64
+* Windows 8.1 Pro K x64
+* Windows 8.1 Pro KN x64
+* Windows 10 Pro K x64
+* Windows 10 Pro KN x64
 
 ## Product Keys
 `Autounattend.xml` 파일에서 사용한 Produck Key는 http://technet.microsoft.com/en-us/library/jj612867.aspx 페이지를 참고했습니다.
