@@ -108,11 +108,10 @@
   ],
   "post-processors": [
     {
-      "compression_level": 1,
       "type": "vagrant",
       "keep_input_artifact": false,
-      "output": "box/{{.Provider}}/win10-pro-kn-x64-ssh.box",
-      "vagrantfile_template": "./tpl/vagrantfile-win10-pro-kn-x64.template"
+      "output": "box/{{user `vm_name`}}/{{.Provider}}.box",
+      "vagrantfile_template": "./tpl/vagrantfile-{{user `vm_name`}}.template"
     }
   ],
 
