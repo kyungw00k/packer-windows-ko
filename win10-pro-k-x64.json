@@ -4,7 +4,7 @@
       "type": "virtualbox-iso",
       "iso_url": "./iso/Win10_Korean_x64.iso",
       "iso_checksum_type": "md5",
-      "iso_checksum": "19295a26d37f81e114fcfed7f1c71b9c",
+      "iso_checksum": "f439b73287368c15ecafd75aa862f698",
       "headless": false,
       "boot_wait": "2m",
       "ssh_username": "vagrant",
