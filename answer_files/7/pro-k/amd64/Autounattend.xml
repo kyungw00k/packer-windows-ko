@@ -49,8 +49,8 @@
                     <InstallToAvailablePartition>false</InstallToAvailablePartition>
                     <InstallFrom>
                         <MetaData wcm:action="add">
-                            <Key>/IMAGE/INDEX</Key>
-                            <Value>1</Value>
+                            <Key>/IMAGE/NAME</Key>
+                            <Value>Windows 7 PROFESSIONALK</Value>
                         </MetaData>
                     </InstallFrom>
                 </OSImage>
