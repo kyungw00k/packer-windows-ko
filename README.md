@@ -17,6 +17,7 @@ $ vagrant init kyungw00k/windows-10-pro-kn-x64; vagrant up --provider virtualbox
 ## Windows Versions
 지원하는 윈도우 버전은 다음과 같습니다.
 
+* Windows 7 Pro K x64
 * Windows 8.1 Pro K x64
 * Windows 8.1 Pro KN x64
 * Windows 10 Pro K x64
